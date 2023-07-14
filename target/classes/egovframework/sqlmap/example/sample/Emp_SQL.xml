@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Emp">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="empVO" type="egovframework.example.sample.service.EmpVO"/>
+
+	<insert id="empDAO.insertEmp">
+		<![CDATA[
+			INSERT INTO EMP
+					(empno, 
+					 ename, 
+					 deptno)
+			VALUES ( #empno#
+				  	,#ename#
+				  	,#deptno# )
+		]]>
+	</insert>
+	
+	<select id="empDAO.selectEmpList" resultClass="empVO">
+        <![CDATA[
+           	select empno
+		           ,ename
+		           ,job
+		           ,mgr
+		           ,hiredate
+		           ,sal
+		           ,comm
+		           ,deptno
+			from emp
+        ]]>
+    </select>
+	
+	<select id="empDAO.selectEmpDetail" resultClass="empVO">
+       <![CDATA[
+          	select empno
+	           ,ename
+	           ,job
+	           ,mgr
+	           ,hiredate
+	           ,sal
+	           ,comm
+	           ,deptno
+		from emp
+		where empno = #empno#
+       ]]>
+    </select>
+    
+	<delete id="empDAO.deleteEmp">
+		<![CDATA[
+			DELETE FROM emp 
+			WHERE empno=#empno#
+		]]>
+	</delete>
+	
+</sqlMap>
